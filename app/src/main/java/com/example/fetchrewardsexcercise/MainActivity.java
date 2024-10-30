@@ -47,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         errorTextView = findViewById(R.id.errorTextView);
 
-        fetchAndFilterData();
-    }
-
-    private void fetchAndFilterData() {
         if (!isNetworkAvailable()) {
             progressBar.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
@@ -72,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            List<Item> items = parseAndFilterData(jsonResponse);
+            List<Item> items = processAndSortData(jsonResponse);
             Map<Integer, List<Item>> groupedItems = groupItemsByListId(items);
 
             mainThreadHandler.post(() -> {
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
     private String fetchJsonData() {
@@ -109,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         return response.toString();
     }
 
-    private List<Item> parseAndFilterData(String jsonResponse) {
+    private List<Item> processAndSortData(String jsonResponse) {
         List<Item> items = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(jsonResponse);
