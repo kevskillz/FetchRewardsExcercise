@@ -1,0 +1,32 @@
+<!-- item_entry.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+
+    <!-- TextView for displaying the ID -->
+    <TextView
+        android:id="@+id/itemIdTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:gravity="center" />
+
+    <!-- TextView for displaying the Name -->
+    <TextView
+        android:id="@+id/itemNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:gravity="center" />
+</LinearLayout>
